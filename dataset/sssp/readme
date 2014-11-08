@@ -1,0 +1,8 @@
+# Please download the input files from the 9th DIMCAS Challenge
+
+wget http://www.dis.uniroma1.it/challenge9/data/USA-road-d/USA-road-d.NW.gr.gz
+wget http://www.dis.uniroma1.it/challenge9/data/USA-road-d/USA-road-d.NY.gr.gz
+
+gunzip USA-road-d.NW.gr.gz
+gunzip USA-road-d.NY.gr.gz
+
