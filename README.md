@@ -1,4 +1,5 @@
 Pannotia v0.9
+=============
 
 © 2014 Advanced Micro Devices, Inc. All rights reserved.
 
@@ -9,22 +10,24 @@ and web and graph analytics.
 
 Here is a link for Pannotia wiki: https://github.com/pannotia/pannotia/wiki
 
-* System Requirements
-
+System Requirements
+===================
 
 Linux® (tested with Ubuntu 12.04)
 AMD APP SDK v2.8 and onwards
 The latest AMD Catalyst™ driver
 AMD APUs and GPUs with OpenCL™ 1.0 support
 
-* Installation, Building and Running
+Installation, Building and Running
+==================================
 
 1. check out the repository: git clone https://github.com/pannotia/pannotia.git
 2. update the make.config file in the common folder to include the correct paths
 3. use the makefiles compile and build programs
 4. run the programs using the sample commands in the makefiles (e.g., make <run_input>)
 
-* Notices
+Notices
+=======
 
 If your use of Pannotia results in a publication, please cite: 
 
@@ -39,6 +42,7 @@ Pannotia includes the input files coAuthorsDBLP.graph from:
 D. A. Bader, H. Meyerhenke, P. Sanders, D. Wagner (eds.): Graph Partitioning and Graph Clustering. 10th DIMACS Implementation Challenge Workshop. Feb, 2012. Georgia Institute of Technology, Atlanta , GA. Contemporary Mathematics 588. American Mathematical Society and Center for Discrete Mathematics and Theoretical Computer Science, 2013.
 
 DISCLAIMER
+=========
 
 The information contained herein is for informational purposes only, and is subject to change without notice. While every 
 precaution has been taken in the preparation of this document, it may contain technical inaccuracies, omissions and 
