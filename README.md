@@ -31,15 +31,15 @@ Notices
 
 If your use of Pannotia results in a publication, please cite: 
 
-S. Che ( Advanced Micro Devices, Inc.), B. M. Beckmann ( Advanced Micro Devices, Inc.), S. K. Reinhardt ( Advanced Micro Devices, Inc.)  and K. Skadron ( University of Virginia), Pannotia: Understanding Irregular GPGPU Graph Applications. In Proceedings of the IEEE International Symposium on Workload Characterization (IISWC), Sept. 2013.
+* S. Che ( Advanced Micro Devices, Inc.), B. M. Beckmann ( Advanced Micro Devices, Inc.), S. K. Reinhardt ( Advanced Micro Devices, Inc.)  and K. Skadron ( University of Virginia), Pannotia: Understanding Irregular GPGPU Graph Applications. In Proceedings of the IEEE International Symposium on Workload Characterization (IISWC), Sept. 2013.
 
 Pannotia includes the input files G3_circuit.graph and ecology1.graph from: 
 
-T. A. Davis and Y. Hu. The University of Florida Sparse Matrix Collection. ACM Transactions on Mathematical Software, 38(1), Nov 2011.
+* T. A. Davis and Y. Hu. The University of Florida Sparse Matrix Collection. ACM Transactions on Mathematical Software, 38(1), Nov 2011.
 
-Pannotia includes the input files coAuthorsDBLP.graph from:
+Pannotia includes the input file coAuthorsDBLP.graph from:
 
-D. A. Bader, H. Meyerhenke, P. Sanders, D. Wagner (eds.): Graph Partitioning and Graph Clustering. 10th DIMACS Implementation Challenge Workshop. Feb, 2012. Georgia Institute of Technology, Atlanta , GA. Contemporary Mathematics 588. American Mathematical Society and Center for Discrete Mathematics and Theoretical Computer Science, 2013.
+* D. A. Bader, H. Meyerhenke, P. Sanders, D. Wagner (eds.): Graph Partitioning and Graph Clustering. 10th DIMACS Implementation Challenge Workshop. Feb, 2012. Georgia Institute of Technology, Atlanta , GA. Contemporary Mathematics 588. American Mathematical Society and Center for Discrete Mathematics and Theoretical Computer Science, 2013.
 
 DISCLAIMER
 =========
