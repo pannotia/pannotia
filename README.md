@@ -13,10 +13,10 @@ Here is a link for Pannotia wiki: https://github.com/pannotia/pannotia/wiki
 System Requirements
 ===================
 
-Linux® (tested with Ubuntu 12.04)
-AMD APP SDK v2.8 and onwards
-The latest AMD Catalyst™ driver
-AMD APUs and GPUs with OpenCL™ 1.0 support
+1. Linux® (tested with Ubuntu 12.04)
+2. AMD APP SDK v2.8 and onwards
+3. The latest AMD Catalyst™ driver
+4. AMD APUs and GPUs with OpenCL™ 1.0 support
 
 Installation, Building and Running
 ==================================
@@ -31,7 +31,7 @@ Notices
 
 If your use of Pannotia results in a publication, please cite: 
 
-S. Che (Advanced Micro Devices, Inc.), B. M. Beckmann (Advanced Micro Devices, Inc.), S. K. Reinhardt (Advanced Micro Devices, Inc.)  and K. Skadron (University of Virginia), Pannotia: Understanding Irregular GPGPU Graph Applications. In Proceedings of the IEEE International Symposium on Workload Characterization (IISWC), Sept. 2013.
+S. Che ( Advanced Micro Devices, Inc.), B. M. Beckmann ( Advanced Micro Devices, Inc.), S. K. Reinhardt ( Advanced Micro Devices, Inc.)  and K. Skadron ( University of Virginia), Pannotia: Understanding Irregular GPGPU Graph Applications. In Proceedings of the IEEE International Symposium on Workload Characterization (IISWC), Sept. 2013.
 
 Pannotia includes the input files G3_circuit.graph and ecology1.graph from: 
 
