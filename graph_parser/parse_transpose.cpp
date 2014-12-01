@@ -1,6 +1,6 @@
 /************************************************************************************\ 
  *                                                                                  *
- * Copyright © 2014 Advanced Micro Devices, Inc.                                    *
+ * Copyright Â© 2014 Advanced Micro Devices, Inc.                                    *
  * All rights reserved.                                                             *
  *                                                                                  *
  * Redistribution and use in source and binary forms, with or without               *
@@ -71,7 +71,7 @@ bool doCompare (
 	return false;
 }
 
-
+//transform csr to ell
 ell_array *csr2ell(csr_array *csr, int num_nodes, int num_edges, int fill){
 
 
@@ -127,6 +127,7 @@ ell_array *csr2ell(csr_array *csr, int num_nodes, int num_edges, int fill){
 
 }
 
+//parse Metis file with transpose
 csr_array *parseMetis_transpose(char* tmpchar, int *p_num_nodes, int *p_num_edges, bool directed){
 
 	int cnt = 0;
@@ -238,6 +239,7 @@ csr_array *parseMetis_transpose(char* tmpchar, int *p_num_nodes, int *p_num_edge
 
 }
 
+//parse COO file with transpose
 csr_array *   parseCOO_transpose(char* tmpchar, int *p_num_nodes, int *p_num_edges, bool directed){
 
 	int cnt = 0;
