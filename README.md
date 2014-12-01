@@ -3,12 +3,12 @@ Pannotia v0.9
 
 © 2014 Advanced Micro Devices, Inc. All rights reserved.
 
-Pannotia is a collection of parallel graph applications.
+Pannotia is a suite of parallel graph applications.
 It is implemented with OpenCL and consists of applications from
 diverse graph domains such as shortest path, graph partitioning, 
 and web and graph analytics.
 
-Here is a link for Pannotia wiki: https://github.com/pannotia/pannotia/wiki
+Here is the link for Pannotia wiki: https://github.com/pannotia/pannotia/wiki
 
 System Requirements
 ===================
@@ -21,10 +21,10 @@ System Requirements
 Installation, Building and Running
 ==================================
 
-1. check out the repository: git clone https://github.com/pannotia/pannotia.git
-2. update the make.config file in the common folder to include the correct paths
-3. use the makefiles compile and build programs
-4. run the programs using the sample commands in the makefiles (e.g., make <run_input>)
+1. Check out the Pannotia repository: git clone https://github.com/pannotia/pannotia.git
+2. Update the make.config file in the common folder to include the correct paths
+3. Use the makefiles compile and build programs
+4. Run the programs using the sample commands in the makefiles (e.g., make <run_input>)
 
 Notices
 =======
