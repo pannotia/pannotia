@@ -1,6 +1,6 @@
 /************************************************************************************\
  *                                                                                  *
- * Copyright © 2014 Advanced Micro Devices, Inc.                                    *
+ * Copyright Â© 2014 Advanced Micro Devices, Inc.                                    *
  * All rights reserved.                                                             *
  *                                                                                  *
  * Redistribution and use in source and binary forms, with or without               *
@@ -265,7 +265,7 @@ __kernel void clean_2d_array( __global int *p,
  * @param   bc_d        Betweeness Centrality array
  * @param   num_nodes   Number of vertices
  */
-__kernel void clean_bc( __global int *bc_d,
+__kernel void clean_bc( __global float *bc_d,
 				          const  int num_nodes){
 
     int tid = get_global_id(0);
