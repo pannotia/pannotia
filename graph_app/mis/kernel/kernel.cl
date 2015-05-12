@@ -96,10 +96,10 @@ __kernel void init(__global int *s_array,
 */
 __kernel void mis1(  __global int *row, 
                      __global int *col, 
-                     __global int *node_value,
+                     __global float *node_value,
                      __global int *s_array,
                      __global int *c_array,
-                     __global int *min_array,
+                     __global float *min_array,
                      __global int *stop,
                               int num_nodes,
                               int num_edges){
@@ -119,7 +119,7 @@ __kernel void mis1(  __global int *row,
                end = num_edges;
 
             //navigate the neighbor list and find the min
-	    int min = BIGNUM;
+	    float min = BIGNUM;
 	    for(int edge = start; edge < end; edge++){
 	        if (c_array[col[edge]] == -1){
                     if(node_value[col[edge]] < min)
@@ -145,11 +145,11 @@ __kernel void mis1(  __global int *row,
 */
 __kernel void  mis2(  __global int *row, 
                       __global int *col, 
-                      __global int *node_value,	
+                      __global float *node_value,	
                       __global int *s_array,
                       __global int *c_array,
                       __global int *cu_array,
-                      __global int *min_array,
+                      __global float *min_array,
                                int num_nodes,
                                int num_edges)
 {
@@ -158,7 +158,7 @@ __kernel void  mis2(  __global int *row,
     int tid = get_global_id(0);
     if (tid < num_nodes){
 
-       if(node_value[tid] <= min_array[tid]  && c_array[tid] == -1){  
+       if(node_value[tid] < min_array[tid]  && c_array[tid] == -1){  
           // -1: not processed -2: inactive 2: independent set
           //put the item into the independent set   
           s_array[tid] = 2;

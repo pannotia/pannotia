@@ -60,7 +60,7 @@
 #include <sys/time.h>
 #include <CL/cl.h>
 #include <algorithm>
-#include "../../graph_parser/parse_transpose.h"
+#include "../../graph_parser/parse.h"
 #include "../../graph_parser/util.h"
 
 #define BIGNUM  9999999
@@ -105,7 +105,7 @@ int main(int argc, char **argv){
 
     //parse the graph and store it into the CSR structure
     if (file_format == 1)
-       csr = parseMetis_transpose(tmpchar, &num_nodes, &num_edges, directed);
+       csr = parseMetis(tmpchar, &num_nodes, &num_edges, directed);
     else if (file_format == 0)		
        csr = parseCOO_transpose(tmpchar, &num_nodes, &num_edges, directed);
     else{
@@ -369,9 +369,7 @@ int main(int argc, char **argv){
 
     //clean up the host arrays
     free(cost_array);
-    free(csr->row_array);
-    free(csr->col_array);
-    free(csr->data_array);
+    csr->freeArrays();
     free(csr);
 
 	//clean up the device-side buffers 

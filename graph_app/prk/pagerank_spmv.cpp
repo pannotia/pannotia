@@ -60,7 +60,7 @@
 #include <sys/time.h>
 #include <CL/cl.h>
 #include <algorithm>
-#include "parse_transpose.h"
+#include "parse.h"
 #include "util.h"
 #define BIGNUM  99999999
 #define ITER 20
@@ -94,7 +94,6 @@ int main(int argc, char **argv){
     if(argc == 3){
        tmpchar = argv[1];  //graph inputfile
        filechar = argv[2];	//kernel file
-       //file_format = atoi(argv[3]); //file format    
     }
     else
     {
@@ -108,7 +107,7 @@ int main(int argc, char **argv){
 
 	//parse the metis format file and store it in a csr format
 	//when loading the file, swap the head and tail pointers
-    csr = parseMetis_transpose(tmpchar, &num_nodes, &num_edges, directed);
+    csr = parseMetis(tmpchar, &num_nodes, &num_edges, directed);
 
     //allocate the pagerank array 1
     float *pagerank_array  = (float *)malloc(num_nodes * sizeof(float));
@@ -350,6 +349,7 @@ int main(int argc, char **argv){
 #if 1
     //print the page-rank array
     print_vectorf(pagerank_array, num_nodes);
+    
     //double sum = 0;
     //for(int i = 0; i < num_nodes; i++){
     //   sum += pagerank_array[i];
@@ -361,9 +361,7 @@ int main(int argc, char **argv){
     //clean up the host side arrays
     free(pagerank_array);
     free(pagerank_array2);
-    free(csr->row_array);
-    free(csr->col_array);
-    free(csr->data_array);
+    csr->freeArrays();
     free(csr);
 
     //clean up the OpenCL buffers

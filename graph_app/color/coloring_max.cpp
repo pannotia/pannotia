@@ -62,8 +62,6 @@
 #include "../../graph_parser/parse.h"
 #include "../../graph_parser/util.h"
 
-#define RANGE 2048
-
 int initialize(int use_gpu);
 int shutdown();
 void print_vector(int *vector, int num);
@@ -115,7 +113,7 @@ int main(int argc, char **argv){
     }
 
 	//alloate the vertex value array
-    int *node_value = (int *)malloc(num_nodes * sizeof(int));
+    float *node_value = (float *)malloc(num_nodes * sizeof(float));
     if(!node_value) fprintf(stderr, "node_value malloc failed\n");
 	//allocate the color array
     int *color     =  (int *)malloc(num_nodes * sizeof(int));
@@ -125,7 +123,7 @@ int main(int argc, char **argv){
 	//randomize the value for each vertex
     for(int i = 0; i < num_nodes; i++){
         color[i] =  -1;
-        node_value[i] =  rand()% RANGE;
+        node_value[i] =  rand()/(float)RAND_MAX;
     }
 
     //load the OpenCL kernel file
@@ -206,9 +204,9 @@ int main(int argc, char **argv){
 	//create device-side buffers for color
     color_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(int), NULL, &err );
     if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer color_d (size:%d) => %d\n", num_nodes , err); return -1;}	
-    node_value_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(int), NULL, &err );
+    node_value_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(float), NULL, &err );
     if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer node_value_d (size:%d) => %d\n", num_nodes , err); return -1;}	
-    max_d = clCreateBuffer(context, CL_MEM_READ_WRITE, num_nodes * sizeof(int), NULL, &err );
+    max_d = clCreateBuffer(context, CL_MEM_READ_WRITE, num_nodes * sizeof(float), NULL, &err );
     if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer max_d (size:%d) => %d\n",  num_nodes , err); return -1;}	
 
     //copy data to device-side buffers
@@ -267,7 +265,7 @@ int main(int argc, char **argv){
                                node_value_d, 
                                1, 
                                0, 
-                               num_nodes * sizeof(int), 
+                               num_nodes * sizeof(float), 
                                node_value, 
                                0, 
                                0, 
@@ -382,9 +380,7 @@ int main(int argc, char **argv){
     //free host-side buffers
     free(node_value);
     free(color);
-    free(csr->row_array);
-    free(csr->col_array);
-    free(csr->data_array);
+    csr->freeArrays();
     free(csr);
 
 	//free OpenCL buffers

@@ -66,14 +66,11 @@ ALL: $(EXE) $(EXE_SPARSE)
 $(EXE): pagerank.cpp parse.o util.o 
 	$(CC) $(CC_FLAGS) -o $(EXE) -I$(OPENCL_INC) -L$(OPENCL_LIB) pagerank.cpp parse.o util.o -lOpenCL
 
-$(EXE_SPARSE): pagerank_spmv.cpp parse_transpose.o util.o
-	$(CC) $(CC_FLAGS) -o $(EXE_SPARSE) -I$(OPENCL_INC) -I../../graph_parser -L$(OPENCL_LIB) pagerank_spmv.cpp parse_transpose.o util.o -lOpenCL
+$(EXE_SPARSE): pagerank_spmv.cpp parse.o util.o
+	$(CC) $(CC_FLAGS) -o $(EXE_SPARSE) -I$(OPENCL_INC) -I../../graph_parser -L$(OPENCL_LIB) pagerank_spmv.cpp parse.o util.o -lOpenCL
 
 parse.o:
 	${CC} -c ../../graph_parser/parse.cpp
-
-parse_transpose.o: parse_transpose.cpp
-	${CC} -c parse_transpose.cpp -I../../graph_parser
 
 util.o:
 	${CC} -c ../../graph_parser/util.cpp

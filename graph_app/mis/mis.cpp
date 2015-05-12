@@ -105,7 +105,7 @@ int main(int argc, char **argv){
 
     //allocate the csr array
     csr_array *csr = (csr_array *)malloc(sizeof(csr_array));
-    if(!csr) fprintf(stderr, "malloc failed node_value\n");
+    if(!csr) fprintf(stderr, "malloc failed csr\n");
 
     //parse the graph into the csr structure
     if (file_format == 1)
@@ -118,16 +118,16 @@ int main(int argc, char **argv){
     }
 
     //allocate the node value array
-    int *node_value = (int *)malloc(num_nodes * sizeof(int));
+    float *node_value = (float *)malloc(num_nodes * sizeof(float));
     if(!node_value) fprintf(stderr, "malloc failed node_value\n");
 
     //allocate the set array
     int *s_array    = (int *)malloc(num_nodes * sizeof(int));
-    if(!s_array) fprintf(stderr, "malloc failed node_value\n");
+    if(!s_array) fprintf(stderr, "malloc failed s_array\n");
 
     //randomize the node values
     for(int i = 0; i < num_nodes; i++)
-       node_value[i] =  rand()% RANGE;
+       node_value[i] =  rand()/(float)RAND_MAX;
 
     //load the OpenCL kernel file
     int sourcesize = 1024*1024;
@@ -210,7 +210,7 @@ int main(int argc, char **argv){
     if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer stop_d (size:%d) => %d\n", 1, err); return -1;}
     
     //allocate the device-side buffers for mis 
-    min_array_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(int), NULL, &err );
+    min_array_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(float), NULL, &err );
     if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer min_array_d (size:%d) => %d\n", num_nodes , err); return -1;}	
     c_array_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(int), NULL, &err );
     if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer c_array_d (size:%d) => %d\n", num_nodes , err); return -1;}	
@@ -218,7 +218,7 @@ int main(int argc, char **argv){
     if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer c_array_d (size:%d) => %d\n", num_nodes , err); return -1;}	
     s_array_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(int), NULL, &err );
     if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer s_array_d (size:%d) => %d\n", num_nodes , err); return -1;}	
-    node_value_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(int), NULL, &err );
+    node_value_d = clCreateBuffer(context,CL_MEM_READ_WRITE, num_nodes * sizeof(float), NULL, &err );
     if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clCreateBuffer node_value_d (size:%d) => %d\n", num_nodes , err); return -1;}	
 
     double time1 = gettime();
@@ -252,7 +252,7 @@ int main(int argc, char **argv){
                                node_value_d, 
                                1, 
                                0, 
-                               num_nodes * sizeof(int), 
+                               num_nodes * sizeof(float), 
                                node_value, 
                                0, 
                                0, 
@@ -320,9 +320,8 @@ int main(int argc, char **argv){
     //termination variable
     int stop = 1;
     while(stop){
-
+        
         stop = 0;
-
         //copy the termination variable to the device
         err = clEnqueueWriteBuffer(cmd_queue, stop_d, 1, 0, sizeof(int), &stop, 0, 0, 0);
         if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: write stop_d variable (%d)\n", err); return -1; }
@@ -389,7 +388,6 @@ int main(int argc, char **argv){
     if(err != CL_SUCCESS) { fprintf(stderr, "ERROR: clEnqueueReadBuffer()=>%d failed\n", err); return -1; }
 
     double time2=gettime();
-
     //print out the timing characterisitics
     printf("kernel + memcpy time %f ms\n",  (time2-time1) * 1000);
 
@@ -401,9 +399,7 @@ int main(int argc, char **argv){
     //clean up the host-side arrays
     free(node_value);
     free(s_array);
-    free(csr->row_array);
-    free(csr->col_array);
-    free(csr->data_array);
+    csr->freeArrays();
     free(csr);
 
     //clean up the device-side arrays

@@ -335,9 +335,7 @@ int main(int argc, char **argv){
 
     //free the host-side arrays
     free(rank_array);
-    free(csr->row_array);
-    free(csr->col_array);
-    free(csr->data_array);
+    csr->freeArrays();
     free(csr);
 
     //free the OpenCL buffers 

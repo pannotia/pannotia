@@ -67,12 +67,12 @@
  * @param   num_nodes   Number of vertices
  * @param   num_edges   Number of edges
  */
-__kernel  void color( __global int *row, 
-                      __global int *col, 
-                      __global int *node_value,
-                      __global int *color_array,
-                      __global int *stop, 
-                      __global int *max_d,
+__kernel  void color( __global int   *row, 
+                      __global int   *col, 
+                      __global float *node_value,
+                      __global int   *color_array,
+                      __global int   *stop, 
+                      __global float *max_d,
 				        const  int color,
                         const  int num_nodes,
 				        const  int num_edges)
@@ -94,7 +94,7 @@ __kernel  void color( __global int *row,
         else
         	end = num_edges;
 
-	    int maximum = -1;
+	    float maximum = -1;
 		//navigate the neighbor list
 	    for(int edge = start; edge < end; edge++){
 		    //determine if the vertex value is the maximum in the neighborhood
@@ -120,9 +120,9 @@ __kernel  void color( __global int *row,
  * @param   num_nodes   Number of vertices
  * @param   num_edges   Number of edges
  */
-__kernel  void color2( __global int *node_value,
-                       __global int *color_array,
-                       __global int *max_d,
+__kernel  void color2( __global float *node_value,
+                       __global int   *color_array,
+                       __global float *max_d,
                           const int color,
                           const int num_nodes,
                           const int num_edges){
@@ -133,16 +133,11 @@ __kernel  void color2( __global int *node_value,
      if (tid < num_nodes){
 	    //if the vertex is still not colored
 	    if(color_array[tid] == -1){
-	      if (node_value[tid] >= max_d[tid])
+	      if (node_value[tid] > max_d[tid])
 		      //assign a color
 		      color_array[tid] = color; 
         }
     }
 
 }
-
-
-
-
-
 

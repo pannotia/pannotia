@@ -69,13 +69,13 @@
  * @param   num_nodes   Number of vertices
  * @param   num_edges   Number of edges
  */
-__kernel  void color( __global int *row, 
-                      __global int *col, 
-                      __global int *node_value,
-                      __global int *color_array,
-                      __global int *stop, 
-                      __global int *max_d,
-                      __global int *min_d,
+__kernel  void color( __global int   *row, 
+                      __global int   *col, 
+                      __global float *node_value,
+                      __global int   *color_array,
+                      __global int   *stop, 
+                      __global float *max_d,
+                      __global float *min_d,
                          const int color,
                          const int num_nodes,
 				         const int num_edges)
@@ -95,8 +95,8 @@ __kernel  void color( __global int *row,
           else
         	end = num_edges;
 
-	      int maximum = -1;
-          int minimum  = BIG_NUM;
+	      float maximum = -1;
+          float minimum  = BIG_NUM;
           //navigate the neighborlist  
 	      for(int edge = start; edge < end; edge++){
 		     if (color_array[col[edge]] == -1 && start!=end-1){
@@ -125,10 +125,10 @@ __kernel  void color( __global int *row,
  * @param   num_nodes   Number of vertices
  * @param   num_edges   Number of edges
  */
-__kernel  void color2( __global int *node_value,
-                       __global int *color_array,
-                       __global int *max_d,
-                       __global int *min_d,
+__kernel  void color2( __global float *node_value,
+                       __global int   *color_array,
+                       __global float *max_d,
+                       __global float *min_d,
                          const  int color,
                          const  int num_nodes,
                          const  int num_edges){
@@ -140,9 +140,9 @@ __kernel  void color2( __global int *node_value,
          //if the vertex is still not colored         
 	     if(color_array[tid] == -1){
            //assign a color
-	       if (node_value[tid] >= max_d[tid])
+	       if (node_value[tid] > max_d[tid])
 		       color_array[tid] = color;
-           if (node_value[tid] <= min_d[tid])
+           if (node_value[tid] < min_d[tid])
 		       color_array[tid] = color+1;
         }
     }

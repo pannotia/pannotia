@@ -64,17 +64,14 @@ EXE_ELL = sssp_ell
 
 All: $(EXE_CSR) $(EXE_ELL)
 
-$(EXE_CSR): sssp_csr.cpp parse_transpose.o util.o 
-	$(CC) $(CC_FLAGS) -o $(EXE_CSR) -I$(OPENCL_INC) -L$(OPENCL_LIB) sssp_csr.cpp parse_transpose.o util.o -lOpenCL
+$(EXE_CSR): sssp_csr.cpp parse.o util.o 
+	$(CC) $(CC_FLAGS) -o $(EXE_CSR) -I$(OPENCL_INC) -L$(OPENCL_LIB) sssp_csr.cpp parse.o util.o -lOpenCL
 
-$(EXE_ELL): sssp_ell.cpp parse_transpose.o util.o 
-	$(CC) $(CC_FLAGS) -o $(EXE_ELL) -I$(OPENCL_INC) -L$(OPENCL_LIB) sssp_ell.cpp parse_transpose.o util.o -lOpenCL
+$(EXE_ELL): sssp_ell.cpp parse.o util.o 
+	$(CC) $(CC_FLAGS) -o $(EXE_ELL) -I$(OPENCL_INC) -L$(OPENCL_LIB) sssp_ell.cpp parse.o util.o -lOpenCL
 
 parse.o:
 	${CC} -c ../../graph_parser/parse.cpp
-
-parse_transpose.o:
-	${CC} -c ../../graph_parser/parse_transpose.cpp
 
 util.o:
 	${CC} -c ../../graph_parser/util.cpp
