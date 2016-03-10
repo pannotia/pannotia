@@ -57,7 +57,7 @@
 include ../../common/make.config
 
 CC = g++
-CC_FLAGS = -O3 -Wall
+CC_FLAGS = -g -O3 -Wall
 
 EXE = floyd-warshall
 

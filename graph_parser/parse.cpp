@@ -281,6 +281,7 @@ csr_array *parseCOO(char* tmpchar, int *p_num_nodes, int *p_num_edges, bool dire
     csr->row_array = row_array;
     csr->col_array = col_array;
     csr->data_array = data_array;
+    csr->col_cnt = NULL;
 
     return csr;
 
@@ -583,6 +584,7 @@ csr_array *parseMM(char* tmpchar, int *p_num_nodes, int *p_num_edges, bool direc
     csr->row_array = row_array;
     csr->col_array = col_array;
     csr->data_array = data_array;
+    csr->col_cnt = NULL;
 
     return csr;
 }
@@ -800,6 +802,7 @@ csr_array *parseCOO_transpose(char* tmpchar, int *p_num_nodes, int *p_num_edges,
     csr->row_array = row_array;
     csr->col_array = col_array;
     csr->data_array = data_array;
+    csr->col_cnt = NULL;
 
     fclose(fptr);
     free(tuple_array);
