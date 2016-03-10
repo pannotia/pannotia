@@ -83,7 +83,7 @@ int main(int argc, char **argv){
 
     int num_nodes; 
     int num_edges;
-    int use_gpu = 0;
+    int use_gpu = 1;
     int file_format = 1;
     bool directed = 0;
 
