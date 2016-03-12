@@ -107,7 +107,7 @@ csr_array * parseCOO(char* tmpchar, int *p_num_nodes, int *p_num_edges, bool dir
 	int cnt = 0;
 	int cnt1 = 0;
 	unsigned int lineno = 0;
-	char line[128], sp[2], a, p;
+	char line[128], sp[3], a, p;
 	int num_nodes = 0, num_edges = 0;
 	
 	FILE *fptr;

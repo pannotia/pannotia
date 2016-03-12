@@ -331,7 +331,7 @@ int* parse_graph_file(int *num_nodes, int *num_edges, char* tmpchar){
     int *adjmatrix;
     int cnt = 0;
     unsigned int lineno = 0;
-    char line[128], sp[2], a, p;
+    char line[128], sp[3], a, p;
 	
     FILE *fptr;
 
@@ -473,7 +473,7 @@ int shutdown()
     // release resources
     if( cmd_queue ) clReleaseCommandQueue( cmd_queue );
     if( context ) clReleaseContext( context );
-    if( device_list ) delete device_list;
+    if( device_list ) delete[] device_list;
 
     // reset all variables
     cmd_queue = 0;

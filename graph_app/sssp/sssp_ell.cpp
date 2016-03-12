@@ -461,7 +461,7 @@ int shutdown()
     // release resources
     if( cmd_queue ) clReleaseCommandQueue( cmd_queue );
     if( context ) clReleaseContext( context );
-    if( device_list ) delete device_list;
+    if( device_list ) delete[] device_list;
 
     // reset all variables
     cmd_queue = 0;
