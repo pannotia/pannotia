@@ -148,6 +148,7 @@ int main(int argc, char **argv){
     cl_program prog = clCreateProgramWithSource(context, 1, slist, NULL, &err);
     if(err != CL_SUCCESS) { printf("ERROR: clCreateProgramWithSource() => %d\n", err); return -1; }
     err = clBuildProgram(prog, 0, NULL, NULL, NULL, NULL);
+    if (err != CL_SUCCESS)
     { // show warnings and errors
       static char log[65536]; 
       memset(log, 0, sizeof(log));
