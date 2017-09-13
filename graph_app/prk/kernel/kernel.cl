@@ -110,11 +110,12 @@ __kernel  void pagerank1(__global int *row,
            end = num_edges;
 
         int nid;
+        const float myPgRkVal = page_rank1[tid]/(float)(end-start);
 		//navigate the neighbor list
         for(int edge = start; edge < end; edge++){
             nid = col[edge];
             //transfer the PageRank value to neighbors
-            add_float_atomic(&page_rank2[nid], page_rank1[tid]/(float)(end-start));
+            add_float_atomic(&page_rank2[nid], myPgRkVal);
         }
     }
 
